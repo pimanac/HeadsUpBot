@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+   <startup>
+      <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+   </startup>
+   <configSections>
+      <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+   </configSections>
+   <appSettings>
+      <!-- Reddit credentials -->
+      <add key="clientId" value="aaaaaaaaaaaaaa" />
+      <add key="clientSercret" value="bbbbbbbbbbbbbbbbbbbbbbbbbbb" />
+      <add key="redirectUri" value="http://127.0.0.1:65010" />
+      <add key="user" value="foo" />
+      <add key="password" value="bar" />
+      <!-- subreddit to watch -->
+      <add key="subreddit" value="/r/example" />
+
+      <!-- slack -->
+      <add key="slackuri" value="https://hooks.slack.com/services/xxxxxxxxx/yyyyyyyyy/zzzzzzzzzzzzzzzzzzzzzzzz" />
+      <!-- username of the slack integration -->
+      <add key="slackuser" value="Heads Up Bot" />
+      <!-- slack channel for alerts -->
+      <add key="slackchannel" value="#general" />
+
+      <!-- populate these with a slack channel to enable comment / submission streams.  To disable leave them blank. -->
+      <add key="commentStreamChannel" value="" />
+      <add key="submissionStreamChannel" value="" />
+      <add key="modmailStreamChannel" value="" />
+
+      <!-- sleep time between checks -->
+      <add key="sleepMinutes" value="15" />
+      
+      <!-- set to true to do !here alerts -->
+      <add key="doHereAlerts" value="false" />
+
+      <!-- ping with !here when there are unmoderated items with a score of this or greater -->
+      <add key="overScoreThreshold" value="100" />
+
+      <!-- ping with !here when there are this many unmoderated items in HOT -->
+      <add key="unmodThreshold" value="15" />
+
+      <!-- ping with !here when ther are items with this many reports -->
+      <add key="reportThreshold" value="5" />
+   </appSettings>
+   <log4net>
+      <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+         <layout type="log4net.Layout.PatternLayout">
+            <conversionPattern value="%date [%thread] %-5level %logger [%ndc] - %message%newline" />
+         </layout>
+      </appender>
+      <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+         <file value="log.txt" />
+         <appendToFile value="true" />
+         <rollingStyle value="Size" />
+         <maxSizeRollBackups value="10" />
+         <maximumFileSize value="1024KB" />
+         <staticLogFileName value="true" />
+         <layout type="log4net.Layout.PatternLayout">
+            <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+         </layout>
+      </appender>
+      <root>
+         <level value="DEBUG" />
+         <appender-ref ref="ConsoleAppender" />
+         <appender-ref ref="RollingFileAppender" />
+      </root>
+   </log4net>
+   <runtime>
+      <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+         <dependentAssembly>
+            <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+            <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+         </dependentAssembly>
+      </assemblyBinding>
+   </runtime>
+</configuration>
