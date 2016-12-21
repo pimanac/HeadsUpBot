@@ -1,27 +1,27 @@
-## HeadsUpBot
+# HeadsUpBot
 
 A slack helper bot for reddit moderators written in dotnet.
 
 Supports Mono
 
-#### Features
+## Features
 
 * Send alerts to slack when items have a high number of reports.
 * Send alerts to slack when unmoderated items are on your front page
 * Mirror Modmail, Comments and Submissions in realtime to dedicated slack channels.
 
 
-#### Building
+### Building
 
 copy `App.config.example` to `App.config`
 
 build the solution with visual studio or msbuild, your choice.
 
-#### Configuration
+### Configuration
 
 Modify App.config to configure the application.
 
-###### Reddit
+#### Reddit
 
 Specify a reddit user and subreddit to watch.  OAuth is required.
 
@@ -32,7 +32,7 @@ Specify a reddit user and subreddit to watch.  OAuth is required.
     <add key="password" value="bar" />
     <add key="subreddit" value="/r/example" />
 
-###### Slack
+#### Slack
 
 configure the webhook
 
@@ -47,7 +47,7 @@ and channel to which alerts should be directed.
     <add key="slackchannel" value="#general" />
 
 
-###### General options
+#### General options
 
 How long to sleep between checking the queues in minutes.  Be kind to the reddit api.
 
@@ -69,7 +69,7 @@ ping when there are items with this many reports
 
       <add key="reportThreshold" value="5" />
 
-###### Mirroring subreddit activity to slack
+#### Mirroring subreddit activity to slack
 
 HeadsUpBot can mirror comment, submission, and modmail activity in your subreddit to one or more slack channels.
 Items are yielded in near-realtime (depending on the activity in your subreddit).
@@ -77,15 +77,15 @@ Items are yielded in near-realtime (depending on the activity in your subreddit)
 **Warning** If your team is using a *Free* slack account your history is limited to 10,000 messages.
 depending on the amount of activity in the target subreddit that can be quickly used up.
 
-Comments
+Comments - Set `value=""` to disable.
 
     <add key="commentStreamChannel" value="#commentstream" />
 
-Submissions  Set `value=""` to disable Submission mirroring.
+Submissions - Set `value=""` to disable.
 
     <add key="submissionStreamChannel" value="#submissionstream" />
 
-Modmail
+Modmail - Set `value=""` to disable.
 
     <add key="modmailStreamChannel" value="#modmail" />
 
